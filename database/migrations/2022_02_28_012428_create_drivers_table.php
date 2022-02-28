@@ -28,7 +28,7 @@ class CreateDriversTable extends Migration
 
             $table->foreign('user_id', 'fk_drivers_user_id')
                 ->references('id')
-                ->on('status');
+                ->on('users');
 
             $table->foreign('status_id', 'fk_drivers_status_id')
                 ->references('id')
