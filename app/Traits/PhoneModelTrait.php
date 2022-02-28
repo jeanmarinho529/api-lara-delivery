@@ -9,14 +9,14 @@ trait PhoneModelTrait
 {
     public function setPhoneAttribute(string $value): void
     {
-        if (array_key_exists('phone', $this->attributes)) {
+        if (array_key_exists('phone', array_flip($this->fillable))) {
             $this->attributes['phone'] = ClearDataHelper::clearAttribute($value);
         }
     }
 
     public function setClientPhoneAttribute(?string $value): void
     {
-        if (array_key_exists('client_phone', $this->attributes)) {
+        if (array_key_exists('client_phone', array_flip($this->fillable))) {
             $this->attributes['client_phone'] = ClearDataHelper::clearAttribute($value);
         }
     }
