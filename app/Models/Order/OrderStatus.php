@@ -2,15 +2,11 @@
 
 namespace App\Models\Order;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OrderStatus extends Model
+class OrderStatus extends BaseModel
 {
-    use HasFactory, SoftDeletes;
-
     public const SEARCHING = 1;
     public const FINISHED = 2;
     public const CANCELED = 3;

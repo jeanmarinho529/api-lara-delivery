@@ -3,17 +3,13 @@
 namespace App\Models\Order;
 
 use App\Helpers\ClearDataHelper;
+use App\Models\BaseModel;
 use App\Models\Driver\Driver;
 use App\Models\Store\Store;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Order extends Model
+class Order extends BaseModel
 {
-    use HasFactory, SoftDeletes;
-
     public $table = 'orders';
 
     protected $fillable = [

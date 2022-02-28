@@ -3,19 +3,15 @@
 namespace App\Models\Driver;
 
 use App\Helpers\ClearDataHelper;
+use App\Models\BaseModel;
 use App\Models\Order\Order;
 use App\Models\Status;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Driver extends Model
+class Driver extends BaseModel
 {
-    use HasFactory, SoftDeletes;
-
     public $table = 'drivers';
 
     protected $fillable = [

@@ -4,15 +4,10 @@ namespace App\Models;
 
 use App\Models\Driver\Driver;
 use App\Models\Store\Store;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Status extends Model
+class Status extends BaseModel
 {
-    use HasFactory, SoftDeletes;
-
     public const ACTIVE = 1;
     public const BLOCKED = 2;
 
