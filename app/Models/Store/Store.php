@@ -11,9 +11,6 @@ class Store extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public const IS_WPP = true;
-    public const NOT_WPP = false;
-
     public $table = 'stores';
 
     protected $fillable = [
