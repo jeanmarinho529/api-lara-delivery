@@ -22,6 +22,8 @@ class Store extends Model
         'is_whatsapp',
         'lat',
         'long',
+        'api_key',
+        'user_id',
         'status_id'
     ];
 

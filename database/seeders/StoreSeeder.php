@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\WhatsappEnum;
 use App\Models\Status;
 use App\Models\Store\Store;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class StoreSeeder extends Seeder
@@ -20,6 +21,8 @@ class StoreSeeder extends Seeder
             'is_whatsapp' => WhatsappEnum::IS_WPP,
             'lat' => '-5.1952329',
             'long' => '-37.4116812',
+            'api_key' => md5('00000000000000'),
+            'user_id' => User::first()->id,
             'status_id' => Status::ACTIVE
         ]);
     }
