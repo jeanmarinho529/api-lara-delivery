@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 class StoreSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         Store::firstOrCreate([
             'trading_name' => 'Test Company',
