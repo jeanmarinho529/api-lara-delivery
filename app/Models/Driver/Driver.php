@@ -3,8 +3,11 @@
 namespace App\Models\Driver;
 
 use App\Helpers\ClearDataHelper;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Driver extends Model
@@ -35,5 +38,15 @@ class Driver extends Model
     public function setCpfAttribute(string $value): void
     {
         $this->attributes['cpf'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 }
