@@ -9,7 +9,7 @@ class StatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->firstName()
+            'name' => $this->faker->unique()->word()
         ];
     }
 }
