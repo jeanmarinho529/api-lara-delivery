@@ -4,8 +4,10 @@ namespace App\Models\Store;
 
 use App\Helpers\ClearDataHelper;
 use App\Models\Order\Order;
+use App\Models\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -41,6 +43,11 @@ class Store extends Model
     public function setCnpjAttribute(string $value): void
     {
         $this->attributes['cnpj'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
     }
 
     public function orders(): HasMany
