@@ -3,15 +3,19 @@
 namespace App\Models\Store;
 
 use App\Helpers\ClearDataHelper;
+use App\Helpers\FormartDataHelper;
 use App\Models\BaseModel;
 use App\Models\Order\Order;
 use App\Models\Status;
 use App\Models\User;
+use App\Traits\PhoneModelTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Store extends BaseModel
 {
+    use PhoneModelTrait;
+
     public $table = 'stores';
 
     protected $fillable = [
@@ -32,14 +36,19 @@ class Store extends BaseModel
         'is_whatsapp' => 'boolean'
     ];
 
-    public function setPhoneAttribute(string $value): void
-    {
-        $this->attributes['phone'] = ClearDataHelper::clearAttribute($value);
-    }
+    protected $appends = [
+        'display_cnpj',
+        'display_phone'
+    ];
 
     public function setCnpjAttribute(string $value): void
     {
         $this->attributes['cnpj'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function getDisplayCnpjAttribute(): string
+    {
+        return FormartDataHelper::formartCpf($this->cnpj);
     }
 
     public function user(): BelongsTo

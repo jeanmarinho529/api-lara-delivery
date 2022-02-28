@@ -2,14 +2,16 @@
 
 namespace App\Models\Order;
 
-use App\Helpers\ClearDataHelper;
 use App\Models\BaseModel;
 use App\Models\Driver\Driver;
 use App\Models\Store\Store;
+use App\Traits\PhoneModelTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends BaseModel
 {
+    use PhoneModelTrait;
+
     public $table = 'orders';
 
     protected $fillable = [
@@ -26,14 +28,13 @@ class Order extends BaseModel
         'order_status_id',
     ];
 
+    protected $appends = [
+        'display_phone'
+    ];
+
     public function setClientNameAttribute(string $value): void
     {
         $this->attributes['client_name'] = ucwords($value);
-    }
-
-    public function setClientPhoneAttribute(?string $value): void
-    {
-        $this->attributes['client_phone'] = ClearDataHelper::clearAttribute($value);
     }
 
     public function store(): BelongsTo

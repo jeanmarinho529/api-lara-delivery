@@ -3,15 +3,19 @@
 namespace App\Models\Driver;
 
 use App\Helpers\ClearDataHelper;
+use App\Helpers\FormartDataHelper;
 use App\Models\BaseModel;
 use App\Models\Order\Order;
 use App\Models\Status;
 use App\Models\User;
+use App\Traits\PhoneModelTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Driver extends BaseModel
 {
+    use PhoneModelTrait;
+
     public $table = 'drivers';
 
     protected $fillable = [
@@ -28,14 +32,19 @@ class Driver extends BaseModel
         'is_whatsapp' => 'boolean'
     ];
 
-    public function setPhoneAttribute(string $value): void
-    {
-        $this->attributes['phone'] = ClearDataHelper::clearAttribute($value);
-    }
+    protected $appends = [
+        'display_cpf',
+        'display_phone'
+    ];
 
     public function setCpfAttribute(string $value): void
     {
         $this->attributes['cpf'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function getDisplayCpfAttribute(): string
+    {
+        return FormartDataHelper::formartCpf($this->cpf);
     }
 
     public function user(): BelongsTo
