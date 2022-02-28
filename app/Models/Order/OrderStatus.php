@@ -4,6 +4,7 @@ namespace App\Models\Order;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderStatus extends Model
@@ -25,5 +26,10 @@ class OrderStatus extends Model
     public function setNameAttribute(string $value): void
     {
         $this->attributes['name'] = ucwords($value);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'order_status_id', 'id');
     }
 }

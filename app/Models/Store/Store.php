@@ -3,8 +3,10 @@
 namespace App\Models\Store;
 
 use App\Helpers\ClearDataHelper;
+use App\Models\Order\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Store extends Model
@@ -39,5 +41,10 @@ class Store extends Model
     public function setCnpjAttribute(string $value): void
     {
         $this->attributes['cnpj'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'store_id', 'id');
     }
 }

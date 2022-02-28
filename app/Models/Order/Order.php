@@ -3,8 +3,11 @@
 namespace App\Models\Order;
 
 use App\Helpers\ClearDataHelper;
+use App\Models\Driver\Driver;
+use App\Models\Store\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -35,5 +38,20 @@ class Order extends Model
     public function setClientPhoneAttribute(?string $value): void
     {
         $this->attributes['client_phone'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id', 'id');
+    }
+
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(Driver::class, 'driver_id', 'id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(OrderStatus::class, 'order_status_id', 'id');
     }
 }
