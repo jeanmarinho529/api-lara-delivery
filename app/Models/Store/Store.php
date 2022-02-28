@@ -6,6 +6,7 @@ use App\Helpers\ClearDataHelper;
 use App\Models\BaseModel;
 use App\Models\Order\Order;
 use App\Models\Status;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -39,6 +40,11 @@ class Store extends BaseModel
     public function setCnpjAttribute(string $value): void
     {
         $this->attributes['cnpj'] = ClearDataHelper::clearAttribute($value);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function status(): BelongsTo

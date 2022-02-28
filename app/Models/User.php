@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Driver\Driver;
+use App\Models\Store\Store;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function driver(): HasOne
     {
         return $this->hasOne(Driver::class, 'user_id', 'id');
+    }
+
+    public function store(): HasOne
+    {
+        return $this->hasOne(Store::class, 'store_id', 'id');
     }
 }
